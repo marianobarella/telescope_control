@@ -199,6 +199,7 @@ class Frontend(QtGui.QFrame):
         layoutGrid3 = QtGui.QGridLayout()
         self.currentSpeedWidget.setLayout(layoutGrid3)
         layoutGrid3.addWidget(QtGui.QLabel("<strong>Current speed"), 1, 1)
+        layoutGrid3.addWidget(QtGui.QLabel("<strong>Calibration"), 4, 1)
         #.......
         layoutGrid3.addWidget(QtGui.QLabel("R.A."), 2, 1)
         self.RAcurrentSpeedLabel = QtGui.QLabel("<strong>%d" % self.currentSpeed[0])
@@ -208,9 +209,9 @@ class Frontend(QtGui.QFrame):
         self.RAcurrentSpeedDegLabel = QtGui.QLabel("<strong>%.2f" % self.degSpeed[0])
         self.RAcurrentSpeedDegLabel.setStyleSheet('font-size: 30px')
         layoutGrid3.addWidget(self.RAcurrentSpeedDegLabel, 3, 2)
-        layoutGrid3.addWidget(QtGui.QLabel("R.A. cal"), 4, 1)
+        layoutGrid3.addWidget(QtGui.QLabel("R.A. cal"), 5, 1)
         self.raCal = QtGui.QLineEdit("0.000136")
-        layoutGrid3.addWidget(self.raCal, 4, 2)
+        layoutGrid3.addWidget(self.raCal, 5, 2)
         
         # Right-ascension
         self.raLabel = QtGui.QLineEdit("0")
@@ -224,9 +225,9 @@ class Frontend(QtGui.QFrame):
         self.DECcurrentSpeedDegLabel = QtGui.QLabel("<strong>%.2f" % self.degSpeed[1])
         self.DECcurrentSpeedDegLabel.setStyleSheet('font-size: 30px')
         layoutGrid3.addWidget(self.DECcurrentSpeedDegLabel, 3, 4)
-        layoutGrid3.addWidget(QtGui.QLabel("Dec cal"), 4, 3)
+        layoutGrid3.addWidget(QtGui.QLabel("Dec cal"), 5, 3)
         self.decCal = QtGui.QLineEdit("0")
-        layoutGrid3.addWidget(self.decCal, 4, 4)
+        layoutGrid3.addWidget(self.decCal, 5, 4)
         
         # Set speed - Interface and buttons -----------------------------------
 
@@ -234,9 +235,10 @@ class Frontend(QtGui.QFrame):
         
         layoutGrid1 = QtGui.QGridLayout()
         self.setSpeedWidget.setLayout(layoutGrid1)
+        layoutGrid1.addWidget(QtGui.QLabel("<strong>Set speed"), 1, 1)
         
-        layoutGrid1.addWidget(QtGui.QLabel("R.A."), 1, 1)
-        layoutGrid1.addWidget(QtGui.QLabel("Dec"), 2, 1)
+        layoutGrid1.addWidget(QtGui.QLabel("R.A."), 2, 1)
+        layoutGrid1.addWidget(QtGui.QLabel("Dec"), 3, 1)
         
         # Right-ascension
         self.raLabel = QtGui.QLineEdit("0")
@@ -263,12 +265,12 @@ class Frontend(QtGui.QFrame):
                              ) 
         self.stopDECButton.pressed.connect(self.stopDECAction)
         
-        layoutGrid1.addWidget(self.raLabel, 1, 2)
-        layoutGrid1.addWidget(self.decLabel, 2, 2)
-        layoutGrid1.addWidget(self.setRADoButton, 1, 3)
-        layoutGrid1.addWidget(self.setDECDoButton, 2, 3)
-        layoutGrid1.addWidget(self.stopRAButton, 1, 4)
-        layoutGrid1.addWidget(self.stopDECButton, 2, 4)
+        layoutGrid1.addWidget(self.raLabel, 2, 2)
+        layoutGrid1.addWidget(self.decLabel, 3, 2)
+        layoutGrid1.addWidget(self.setRADoButton, 2, 3)
+        layoutGrid1.addWidget(self.setDECDoButton, 3, 3)
+        layoutGrid1.addWidget(self.stopRAButton, 2, 4)
+        layoutGrid1.addWidget(self.stopDECButton, 3, 4)
         
         # Easy set speed buttons ----------------------------------------------
 
