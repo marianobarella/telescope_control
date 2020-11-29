@@ -25,10 +25,14 @@ Gears and motors responsible for the movements of the axis are added to the moun
 
 ### Graphical User Interface
 ![GUI](gui.png "Graphical User Interface")
+
 Max and min speed for the axis is set to +255 and -255 respectively. Using the 3d printed parts located at the `3d_printed_parts` folder,  this speeds will exceed the Earth's rotational speed by a factor of 8 giving you a margin to track other objects.
 
 ### 3d printed parts
 All parts were designed with FreeCAD and converted to gcode using Slic3er (both free and open-source programs). Inside `3d_printed_parts` folder you will find the .fcstd files (FreeCAD format) and .stl files for all parts you need: gears, clamps and strctures to grab the mount, and the motor cases.
+
+Picture of the setup:
+![Equatorial mount](only_mount.jpg "Remote controlled mount")
 
 Comments: tested on Debian 9.13, Python 3.5.3, Arduno IDE 1.8.10. 
 
