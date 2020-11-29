@@ -26,7 +26,10 @@ Gears and motors responsible for the movements of the axis are added to the moun
 ### Graphical User Interface
 ![](gui.png "Graphical User Interface")
 
-Max and min speed for the axis is set to +255 and -255 respectively. Using the 3d printed parts located at the `3d_printed_parts` folder,  this speeds will exceed the Earth's rotational speed by a factor of 8 giving you a margin to track other objects.
+- There's a dock for the serial com and another for axis speed.
+- R.A. and Dec speeds are set using a byte-type variable as the motor speed is controlled via an Arduino's PWM signal. This means that their values range from 0 to 255. You can choose between clockwise (positive speeds) or anti-clockwise (negative) rotational speeds.
+- Max and min speed for the axis is set to +255 and -255, respectively. Using the 3d printed parts located at the `3d_printed_parts` folder, the R.A. axis can reach 35 mrad/min. This speed exceeds Earth's rotational speed by a factor of 8, giving you a margin to track other objects.
+- After assembly, you can measure the actual speed using a laser pointer mounted on the motorized mount aimed at a distant wall. Estimate the rotational speed for each axis and use a conversion coefficient (at calibration box) to transform byte units into millirad per minute.
 
 ### 3d printed parts
 All parts were designed with FreeCAD and converted to gcode using Slic3er (both free and open-source programs). Inside `3d_printed_parts` folder you will find the .fcstd files (FreeCAD format) and .stl files for all parts you need: gears, clamps and strctures to grab the mount, and the motor cases.
