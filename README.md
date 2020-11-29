@@ -1,7 +1,7 @@
 # telescope_control
 Telescope's mount remote control using Python 3, Arduino framework, a bunch of electronics and 3d printed parts.
 
-This project aims to controls the Right Ascension (R.A.) and Declination (DEC) axis of an *equatorial mount*. However, it can be easily adapted to any other type of mount. For controlling the focus of the optical tube see this [repository](https://github.com/marianobarella/dc_motor_controller).
+This project aims to controls the Right Ascension (R.A.) and Declination (DEC) axis of an *equatorial mount*. However, it can be easily adapted to any other type of mount. For controlling the focus of the optical tube see this [repository](https://github.com/marianobarella/dc_motor_controller) and this link [Focuser 3d printed parts](https://www.thingiverse.com/thing:4636227).
 
 ### What kind of telescope/mount?
 The project is based on a low-cost Celestron PowerSeeker 127EQ Newtonian telescope (to be precise, it's a Bird-Jones telescope). **Bonus:** this project works for all PowerSeeker XXXEQ reflective telescope as they all share the same equatorial mount.
