@@ -66,6 +66,7 @@ class Frontend(QtGui.QFrame):
         self.setWindowTitle("Telescope control")
 
         self.currentSpeed = [0, 0]
+        self.degSpeed = [0,0]        
         
         self.setUpGUI()
         
@@ -183,25 +184,50 @@ class Frontend(QtGui.QFrame):
     # Define Graphical User Interface       
 
     def updateSpeedLabels(self):
+        self.degSpeed[0] = self.currentSpeed[0]*float(self.raCal.text())*1000 # to account for prefix in self.RAcurrentSpeedDegLabel
+        self.degSpeed[1] = self.currentSpeed[1]*float(self.raCal.text())*1000 # to account for prefix in self.DECcurrentSpeedDegLabel
         self.RAcurrentSpeedLabel.setText("<strong>%d" % self.currentSpeed[0])
         self.DECcurrentSpeedLabel.setText("<strong>%d" % self.currentSpeed[1])
-    
+        self.RAcurrentSpeedDegLabel.setText("<strong>%.2f" % self.degSpeed[0])
+        self.DECcurrentSpeedDegLabel.setText("<strong>%.2f" % self.degSpeed[1])
+
     def setUpGUI(self):
         
-        # Current speed
+        # Current speed and calibration ---------------------------------------
+        
         self.currentSpeedWidget = QtGui.QWidget()
         layoutGrid3 = QtGui.QGridLayout()
         self.currentSpeedWidget.setLayout(layoutGrid3)
         layoutGrid3.addWidget(QtGui.QLabel("<strong>Current speed"), 1, 1)
+        #.......
         layoutGrid3.addWidget(QtGui.QLabel("R.A."), 2, 1)
         self.RAcurrentSpeedLabel = QtGui.QLabel("<strong>%d" % self.currentSpeed[0])
         self.RAcurrentSpeedLabel.setStyleSheet('font-size: 30px')
         layoutGrid3.addWidget(self.RAcurrentSpeedLabel, 2, 2)
+        layoutGrid3.addWidget(QtGui.QLabel("R.A. in mrad/min"), 3, 1)
+        self.RAcurrentSpeedDegLabel = QtGui.QLabel("<strong>%.2f" % self.degSpeed[0])
+        self.RAcurrentSpeedDegLabel.setStyleSheet('font-size: 30px')
+        layoutGrid3.addWidget(self.RAcurrentSpeedDegLabel, 3, 2)
+        layoutGrid3.addWidget(QtGui.QLabel("R.A. cal"), 4, 1)
+        self.raCal = QtGui.QLineEdit("0.000136")
+        layoutGrid3.addWidget(self.raCal, 4, 2)
+        
+        # Right-ascension
+        self.raLabel = QtGui.QLineEdit("0")
+        self.decLabel = QtGui.QLineEdit("0")
+        #.......
         layoutGrid3.addWidget(QtGui.QLabel("Dec"), 2, 3)
         self.DECcurrentSpeedLabel = QtGui.QLabel("<strong>%d" % self.currentSpeed[1])
         self.DECcurrentSpeedLabel.setStyleSheet('font-size: 30px')
         layoutGrid3.addWidget(self.DECcurrentSpeedLabel, 2, 4)
-                     
+        layoutGrid3.addWidget(QtGui.QLabel("Dec in mrad/min"), 3, 3)
+        self.DECcurrentSpeedDegLabel = QtGui.QLabel("<strong>%.2f" % self.degSpeed[1])
+        self.DECcurrentSpeedDegLabel.setStyleSheet('font-size: 30px')
+        layoutGrid3.addWidget(self.DECcurrentSpeedDegLabel, 3, 4)
+        layoutGrid3.addWidget(QtGui.QLabel("Dec cal"), 4, 3)
+        self.decCal = QtGui.QLineEdit("0")
+        layoutGrid3.addWidget(self.decCal, 4, 4)
+        
         # Set speed - Interface and buttons -----------------------------------
 
         self.setSpeedWidget = QtGui.QWidget()
@@ -247,9 +273,7 @@ class Frontend(QtGui.QFrame):
         # Easy set speed buttons ----------------------------------------------
 
         self.RALabel = QtGui.QLabel('R.A.')
-        self.RALabel.setTextFormat(QtCore.Qt.RichText)
         self.DECLabel = QtGui.QLabel('Dec')
-        self.DECLabel.setTextFormat(QtCore.Qt.RichText)
         self.add1RAButton = QtGui.QPushButton("+1 ▲")
         self.add10RAButton = QtGui.QPushButton("+10 ▲▲")
         self.sub1RAButton = QtGui.QPushButton("-1 ▼")
