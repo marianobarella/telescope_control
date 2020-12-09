@@ -116,7 +116,9 @@ class Frontend(QtGui.QFrame):
            self.currentSpeed[1] = setDo[1]
            
     # Incremental and decremental signals       
-           
+    
+    ## RA buttons instructions
+       
     def add1RASpeed(self):
         newSpeed = int(self.currentSpeed[0] + 1)
         checkedSpeed = checkSpeed(newSpeed)
@@ -130,6 +132,14 @@ class Frontend(QtGui.QFrame):
         checkedSpeed = checkSpeed(newSpeed)
         setDo = ['RA', checkedSpeed]
         if self.add10RAButton.isChecked:   
+            self.setDoSignal.emit(setDo)
+            self.currentSpeed[0] = setDo[1]
+            
+    def maxRASpeed(self):
+        newSpeed = 255
+        checkedSpeed = checkSpeed(newSpeed)
+        setDo = ['RA', checkedSpeed]
+        if self.maxRASpeed.isChecked:   
             self.setDoSignal.emit(setDo)
             self.currentSpeed[0] = setDo[1]
 
@@ -148,7 +158,17 @@ class Frontend(QtGui.QFrame):
         if self.sub10RAButton.isChecked:   
             self.setDoSignal.emit(setDo)
             self.currentSpeed[0] = setDo[1]
-            
+    
+    def minRASpeed(self):
+        newSpeed = -255
+        checkedSpeed = checkSpeed(newSpeed)
+        setDo = ['RA', checkedSpeed]
+        if self.maxRASpeed.isChecked:   
+            self.setDoSignal.emit(setDo)
+            self.currentSpeed[0] = setDo[1]
+    
+    ## DEC buttons instructions
+    
     def add1DECSpeed(self):
         newSpeed = int(self.currentSpeed[1] + 1)
         checkedSpeed = checkSpeed(newSpeed)
@@ -162,6 +182,14 @@ class Frontend(QtGui.QFrame):
         checkedSpeed = checkSpeed(newSpeed)
         setDo = ['DEC', checkedSpeed]
         if self.add10DECButton.isChecked:   
+            self.setDoSignal.emit(setDo)
+            self.currentSpeed[1] = setDo[1]
+            
+    def maxDECSpeed(self):
+        newSpeed = 255
+        checkedSpeed = checkSpeed(newSpeed)
+        setDo = ['DEC', checkedSpeed]
+        if self.maxRASpeed.isChecked:   
             self.setDoSignal.emit(setDo)
             self.currentSpeed[1] = setDo[1]
 
@@ -179,6 +207,14 @@ class Frontend(QtGui.QFrame):
         setDo = ['DEC', checkedSpeed]
         if self.sub10DECButton.isChecked:   
             self.setDoSignal.emit(setDo) 
+            self.currentSpeed[1] = setDo[1]
+            
+    def minDECSpeed(self):
+        newSpeed = -255
+        checkedSpeed = checkSpeed(newSpeed)
+        setDo = ['DEC', checkedSpeed]
+        if self.maxRASpeed.isChecked:   
+            self.setDoSignal.emit(setDo)
             self.currentSpeed[1] = setDo[1]
     
     # Define Graphical User Interface       
@@ -241,12 +277,13 @@ class Frontend(QtGui.QFrame):
         layoutGrid1.addWidget(QtGui.QLabel("Dec"), 3, 1)
         
         # Right-ascension
-        self.raLabel = QtGui.QLineEdit("0")
+        self.raLabel = QtGui.QLineEdit("57")
         self.decLabel = QtGui.QLineEdit("0")
         self.setRADoButton = QtGui.QPushButton("Set R.A.")
         # IMPORTANT: connection here!
         self.setRADoButton.pressed.connect(self.setRADoAction)
         self.stopRAButton = QtGui.QPushButton("Stop R.A.")
+        self.stopRAButton.setFont(QtGui.QFont('sans-serif', 22))
         self.stopRAButton.setStyleSheet("QPushButton\
                              {background-color : firebrick;\
                              color: white}"
@@ -259,6 +296,7 @@ class Frontend(QtGui.QFrame):
         self.setDECDoButton.pressed.connect(self.setDECDoAction)
         
         self.stopDECButton = QtGui.QPushButton("Stop Dec")
+        self.stopDECButton.setFont(QtGui.QFont('sans-serif', 22))
         self.stopDECButton.setStyleSheet("QPushButton\
                              {background-color : firebrick;\
                              color: white}"
@@ -278,21 +316,45 @@ class Frontend(QtGui.QFrame):
         self.DECLabel = QtGui.QLabel('Dec')
         self.add1RAButton = QtGui.QPushButton("+1 ▲")
         self.add10RAButton = QtGui.QPushButton("+10 ▲▲")
+        self.maxRAButton = QtGui.QPushButton("+255")
+        self.maxRAButton.setStyleSheet("QPushButton\
+                                         {background-color : lightgreen;\
+                                          color: black}"
+                                          ) 
         self.sub1RAButton = QtGui.QPushButton("-1 ▼")
         self.sub10RAButton = QtGui.QPushButton("-10 ▼▼")
+        self.minRAButton = QtGui.QPushButton("-255")
+        self.minRAButton.setStyleSheet("QPushButton\
+                                         {background-color : lightgreen;\
+                                          color: black}"
+                                          ) 
         self.add1DECButton = QtGui.QPushButton("+1 ▲")
         self.add10DECButton = QtGui.QPushButton("+10 ▲▲")
+        self.maxDECButton = QtGui.QPushButton("+255")
+        self.maxDECButton.setStyleSheet("QPushButton\
+                                         {background-color : lightgreen;\
+                                          color: black}"
+                                          ) 
         self.sub1DECButton = QtGui.QPushButton("-1 ▼")
         self.sub10DECButton = QtGui.QPushButton("-10 ▼▼")
+        self.minDECButton = QtGui.QPushButton("-255")
+        self.minDECButton.setStyleSheet("QPushButton\
+                                         {background-color : lightgreen;\
+                                          color: black}"
+                                          ) 
         # IMPORTANT: connections here!
         self.add1RAButton.pressed.connect(self.add1RASpeed)
         self.add10RAButton.pressed.connect(self.add10RASpeed)
+        self.maxRAButton.pressed.connect(self.maxRASpeed)
         self.sub1RAButton.pressed.connect(self.sub1RASpeed)
         self.sub10RAButton.pressed.connect(self.sub10RASpeed)
+        self.minRAButton.pressed.connect(self.minRASpeed)
         self.add1DECButton.pressed.connect(self.add1DECSpeed)
         self.add10DECButton.pressed.connect(self.add10DECSpeed)
+        self.maxDECButton.pressed.connect(self.maxDECSpeed)
         self.sub1DECButton.pressed.connect(self.sub1DECSpeed)
         self.sub10DECButton.pressed.connect(self.sub10DECSpeed)
+        self.minDECButton.pressed.connect(self.minDECSpeed)
 
         self.easySpeedWidget = QtGui.QWidget()
         layoutGrid0 = QtGui.QGridLayout()
@@ -301,13 +363,17 @@ class Frontend(QtGui.QFrame):
         layoutGrid0.addWidget(self.RALabel,        1, 1)
         layoutGrid0.addWidget(self.add1RAButton,    1, 2)
         layoutGrid0.addWidget(self.add10RAButton,  1, 3)
+        layoutGrid0.addWidget(self.maxRAButton,  1, 4)
         layoutGrid0.addWidget(self.sub1RAButton,    2, 2)
         layoutGrid0.addWidget(self.sub10RAButton,  2, 3)
+        layoutGrid0.addWidget(self.minRAButton,  2, 4)
         layoutGrid0.addWidget(self.DECLabel,        3, 1)
         layoutGrid0.addWidget(self.add1DECButton,    3, 2)
         layoutGrid0.addWidget(self.add10DECButton,  3, 3)
+        layoutGrid0.addWidget(self.maxDECButton,  3, 4)
         layoutGrid0.addWidget(self.sub1DECButton,    4, 2)
         layoutGrid0.addWidget(self.sub10DECButton,  4, 3)
+        layoutGrid0.addWidget(self.minDECButton,  4, 4)
 
         # Serial - Interface and buttons -------------------------------------
         
