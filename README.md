@@ -32,13 +32,13 @@ Gears and motors responsible for the movements of the axis are added to the moun
 - After assembly, you can measure the actual speed using a laser pointer mounted on the motorized mount aimed at a distant wall. Estimate the rotational speed for each axis and use a conversion coefficient (at calibration box) to transform byte units into millirad per minute.
 
 ### 3d printed parts
-All parts were designed with FreeCAD and converted to gcode using Slic3er (both free and open-source programs). Inside `3d_printed_parts` folder you will find the .fcstd files (FreeCAD format) and .stl files for all parts you need: gears, clamps and strctures to grab the mount, and the motor cases.
+All parts were designed with FreeCAD and converted to gcode using Slic3er (both free and open-source programs). Inside `3d_printed_parts` folder you will find the .fcstd files (FreeCAD format) and .stl files for all parts you need: gears, clamps and strctures to grab the mount, and the motor cases. Check last versions, upgrades may happen.
 
 #### Picture of the setup:
 
 <img src="only_mount.jpg " width="480">
 
-Comments: tested on Debian 9.13, Python 3.5.3, Arduno IDE 1.8.10. 
+Comments: tested on Debian 9.13 and Windows 7 Home, Python 3.5.3, Arduno IDE 1.8.10. 
 
 #### Disclaimer:
 All 3d parts are functional and, you may think they lack of aesthetics... You're right! If new designs improve the way the accesories looks like, please share!
